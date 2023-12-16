@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { CircularProgressbar } from "react-circular-progressbar";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +9,11 @@ import DashboardRowperson from "components/DashboardRowperson";
 import "react-circular-progressbar/dist/styles.css";
 
 const DashboardPage = () => {
+  var [name, setName] = useState()
   const navigate = useNavigate();
-
+  useEffect(()=>{
+    setName(localStorage.getItem("user"))
+  },[])
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-inter items-center justify-end mx-auto pt-[29px] sm:px-5 px-[29px] w-full">
@@ -226,7 +229,10 @@ const DashboardPage = () => {
                 </div>
                 <Button
                   className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[107px] md:ml-[0] ml-[5px] mt-[23px]"
-                  onClick={() => navigate("/")}
+                  onClick={() => {
+                    localStorage.removeItem('user')
+                    localStorage.removeItem('token')
+                    navigate("/")}}
                   leftIcon={
                     <Img
                       className="h-6 mb-px mr-[15px]"
@@ -235,7 +241,7 @@ const DashboardPage = () => {
                     />
                   }
                 >
-                  <div className="leading-[normal] text-left text-lg text-pink-500">
+                  <div className="leading-[normal] text-left text-lg text-pink-500" >
                     Log Out
                   </div>
                 </Button>
@@ -672,7 +678,7 @@ const DashboardPage = () => {
                       className="capitalize text-base text-center text-gray-900_02 w-full"
                       size="txtInterMedium16"
                     >
-                      Hello, Prashant
+                      Hello, {name}
                     </Text>
                     <Text
                       className="capitalize max-w-[208px] md:max-w-full text-center text-gray-600_02 text-xs"

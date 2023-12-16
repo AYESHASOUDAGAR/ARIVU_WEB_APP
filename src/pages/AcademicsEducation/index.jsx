@@ -33,7 +33,7 @@ const AcademicsEducationPage = () => {
                     size="txtInterSemiBold20Black900"
                     onClick={() => navigate("/profile")}
                   >
-                    PROFILE
+                    {localStorage.getItem("user")}
                   </Text>
                 </div>
                 <Line className="bg-gray-700_03 h-px mt-3 w-full" />

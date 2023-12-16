@@ -17,8 +17,27 @@ const SchoolsignupForm = () => {
 
   const onSubmit = (values) => {
     // Handle form submission with values
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    alert(values)
+    var raw = JSON.stringify({
+      "name": values.email,
+      "password": values.password
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://127.0.0.1:5000/school/reg", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
       console.log(values);
-      navigate("/dashboard");
+      navigate("/schoollogin");
   };
 
   const validate = (values) => {

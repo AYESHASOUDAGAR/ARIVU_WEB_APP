@@ -204,7 +204,7 @@ const ClassSubjectPage = () => {
                 className="sm:text-[40px] md:text-[46px] text-[50px] text-black-900"
                 size="txtInterBold50Black900"
               >
-                Subject
+                Maths
               </Text>
               <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between mt-3 w-full">
                 <Text

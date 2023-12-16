@@ -18,9 +18,39 @@ const LoginForm = () => {
 
   const onSubmit = (values) => {
     // Handle form submission with values
-    console.log(values);
-    navigate("/dashboard");
-  };
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "email": values.email,
+      "password": values.password
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://127.0.0.1:5000/school/login", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result,typeof(result))
+        localStorage.setItem('user', result.user);
+        localStorage.setItem('token', result.token);
+      })
+      .catch(error => console.log('error', error));
+
+
+      console.log(values);
+      
+      navigate("/dashboard");
+    };
+
+
+
+
 
   const validate = (values) => {
     const errors = {};
